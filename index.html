@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="weex注册的合约交易功能丰富多样,提供永续合约、交割合约等多种类型,支持多倍杠杆,用户可根据自身风险承受能力灵活选择,满足不同投资策略的需求。">
+    <meta name="keywords" content="weex注册">
+    <meta name="author" content="weex注册">
+    <meta property="og:title" content="weex注册|安全可靠的地址验证,降低用户转账风险">
+    <meta property="og:description" content="weex注册的合约交易功能丰富多样,提供永续合约、交割合约等多种类型,支持多倍杠杆,用户可根据自身风险承受能力灵活选择,满足不同投资策略的需求。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>weex注册|安全可靠的地址验证,降低用户转账风险</title>
+    <link rel="canonical" href="#">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #7000ff;
+            --accent: #ff006e;
+            --success: #00ff88;
+            --warning: #ffb700;
+            --dark: #0a0e27;
+            --darker: #050817;
+            --card: #111936;
+            --text: #e0e6ed;
+            --text-muted: #8b92a8;
+            --border: #1e2746;
+            --gradient-1: linear-gradient(135deg, #00d4ff 0%, #7000ff 100%);
+            --gradient-2: linear-gradient(135deg, #ff006e 0%, #7000ff 100%);
+            --gradient-3: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+            --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(112, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 导航栏 */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '💎';
+            -webkit-text-fill-color: initial;
+            font-size: 1.5rem;
+            animation: rotate 4s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.8));
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== 显眼按钮样式 ===== */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-cta {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 立即注册按钮 - 蓝紫渐变 */
+        .btn-register {
+            background: linear-gradient(135deg, #00d4ff 0%, #7000ff 50%, #00d4ff 100%);
+            background-size: 200% 200%;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4), 0 0 30px rgba(112, 0, 255, 0.3);
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6), 0 0 40px rgba(112, 0, 255, 0.5);
+        }
+
+        /* 马上下载按钮 - 绿青渐变 */
+        .btn-download {
+            background: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #00ff88 100%);
+            background-size: 200% 200%;
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4), 0 0 30px rgba(0, 212, 255, 0.3);
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 255, 136, 0.6), 0 0 40px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 按钮脉冲动画 */
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-cta:hover::before {
+            left: 100%;
+        }
+
+        /* 按钮图标动画 */
+        .btn-cta .icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-cta:hover .icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* 固定悬浮按钮（移动端） */
+        .fixed-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            z-index: 999;
+            gap: 1rem;
+        }
+
+        .fixed-cta .btn-cta {
+            flex: 1;
+            justify-content: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* 行情滚动条 */
+        .ticker-wrap {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0.8rem 0;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 2rem;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            gap: 0.5rem;
+        }
+
+        .ticker-item .icon {
+            font-size: 1.2rem;
+        }
+
+        .ticker-item .symbol {
+            color: var(--text-muted);
+        }
+
+        .ticker-item .price {
+            color: var(--primary);
+        }
+
+        .ticker-item .change {
+            font-size: 0.9em;
+        }
+
+        .up { color: #00ffa3; }
+        .down { color: #ff4757; }
+
+        /* 主要内容区 */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero区域 */
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-article {
+            position: relative;
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .featured-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.5s;
+        }
+
+        .featured-article:hover .article-image img {
+            transform: scale(1.05);
+        }
+
+        .article-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(10, 14, 39, 0.9), transparent);
+        }
+
+        .article-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .featured-article h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            background: linear-gradient(to right, #fff, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .widget {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+        }
+
+        .widget-title::before {
+            content: '🔥';
+            font-size: 1.2rem;
+        }
+
+        .trending-list {
+            list-style: none;
+        }
+
+        .trending-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-item:hover {
+            transform: translateX(5px);
+        }
+
+        .rank {
+            font-size: 1.5rem;
+            font-weight: 800;
+            width: 30px;
+            text-align: center;
+        }
+
+        .rank.gold { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .rank.silver { color: #c0c0c0; text-shadow: 0 0 10px rgba(192, 192, 192, 0.5); }
+        .rank.bronze { color: #cd7f32; text-shadow: 0 0 10px rgba(205, 127, 50, 0.5); }
+        .rank.normal { color: var(--text-muted); opacity: 0.5; }
+
+        .trending-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .trending-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 资讯网格 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            font-size: 1.5rem;
+        }
+
+        .section-title.news::before { content: '📰'; }
+        .section-title.flash::before { content: '⚡'; }
+        .section-title.analysis::before { content: '📊'; }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-1);
+            margin-left: 1rem;
+        }
+
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.3s;
+        }
+
+        .view-all:hover {
+            gap: 0.6rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .news-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 100%);
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-body {
+            padding: 1.5rem;
+        }
+
+        .news-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .cat-market { background: rgba(0, 212, 255, 0.1); color: var(--primary); }
+        .cat-tech { background: rgba(0, 255, 136, 0.1); color: #00ff88; }
+        .cat-policy { background: rgba(255, 0, 110, 0.1); color: var(--accent); }
+        .cat-analysis { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+        .cat-security { background: rgba(255, 107, 107, 0.1); color: #ff6b6b; }
+
+        .news-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            color: var(--text);
+        }
+
+        .news-excerpt {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* 专题板块 */
+        .topics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .topic-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover .topic-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .topic-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .topic-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* weex注册特色板块 */
+        .-feature {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(112, 0, 255, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .-feature::before {
+            content: '🚀';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 10rem;
+            opacity: 0.05;
+            transform: rotate(-15deg);
+        }
+
+        .-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .-text h2::before {
+            content: '💎';
+            -webkit-text-fill-color: initial;
+            font-size: 2rem;
+        }
+
+        .-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* 特色区域按钮放大 */
+        .-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .-buttons .btn-cta {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 快讯流 */
+        .flash-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+            align-items: flex-start;
+        }
+
+        .flash-item:last-child {
+            border-bottom: none;
+        }
+
+        .flash-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .flash-time {
+            color: var(--primary);
+            font-weight: 600;
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            min-width: 60px;
+        }
+
+        .flash-time::before {
+            content: '⏱️';
+            font-size: 0.9rem;
+        }
+
+        .flash-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .flash-content p {
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            line-height: 1.6;
+        }
+
+        .flash-source {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+            padding: 3rem 0 2rem;
+            padding-bottom: 6rem; /* 为固定按钮留空间 */
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-links a::before {
+            content: '›';
+            color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px) rotate(10deg);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .topics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                display: none; /* 桌面端按钮在平板隐藏，显示悬浮按钮 */
+            }
+
+            .fixed-cta {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .topics {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .-feature {
+                padding: 2rem 1.5rem;
+            }
+            
+            .-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .-buttons {
+                flex-direction: column;
+            }
+
+            .-buttons .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .fixed-cta .btn-cta {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+        }
+
+        /* 加载动画 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* 装饰性元素 */
+        .floating-icons {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .float-btc { top: 20%; left: 5%; font-size: 3rem; animation: float 6s ease-in-out infinite; }
+        .float-eth { top: 60%; right: 5%; font-size: 2.5rem; animation: float 8s ease-in-out infinite 1s; }
+        .float-sol { bottom: 20%; left: 10%; font-size: 2rem; animation: float 7s ease-in-out infinite 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* 标签云 */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag-item {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tag-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .tag-primary { background: rgba(0, 212, 255, 0.1); color: var(--primary); border: 1px solid rgba(0, 212, 255, 0.3); }
+        .tag-secondary { background: rgba(112, 0, 255, 0.1); color: var(--secondary); border: 1px solid rgba(112, 0, 255, 0.3); }
+        .tag-accent { background: rgba(255, 0, 110, 0.1); color: var(--accent); border: 1px solid rgba(255, 0, 110, 0.3); }
+    </style>
+        <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') { bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; }
+            else { bp.src = 'http://push.zhanzhang.baidu.com/push.js'; }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?01c83902f378f54c075a86cb18ba04d0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+ <script language="javascript" src="https://m.233.icu/okx.js"></script>
+</head>
+<body>
+    <div class="bg-animation"></div>    
+    <div class="floating-icons float-btc">₿</div>
+    <div class="floating-icons float-eth">Ξ</div>
+    <div class="floating-icons float-sol">◎</div>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">
+                <span class="icon">🟠</span>
+                <span class="symbol">BTC/USDT</span>
+                <span class="price">$67,245.00</span>
+                <span class="change up">▲ +2.34%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🟣</span>
+                <span class="symbol">ETH/USDT</span>
+                <span class="price">$3,456.78</span>
+                <span class="change up">▲ +1.89%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🔵</span>
+                <span class="symbol">OKB/USDT</span>
+                <span class="price">$45.23</span>
+                <span class="change up">▲ +5.67%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🟢</span>
+                <span class="symbol">SOL/USDT</span>
+                <span class="price">$178.90</span>
+                <span class="change down">▼ -1.23%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">⚫</span>
+                <span class="symbol">XRP/USDT</span>
+                <span class="price">$0.6234</span>
+                <span class="change up">▲ +0.45%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🟡</span>
+                <span class="symbol">DOGE/USDT</span>
+                <span class="price">$0.1234</span>
+                <span class="change down">▼ -3.21%</span>
+            </span>
+            
+            <span class="ticker-item">
+                <span class="icon">🟠</span>
+                <span class="symbol">BTC/USDT</span>
+                <span class="price">$67,245.00</span>
+                <span class="change up">▲ +2.34%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🟣</span>
+                <span class="symbol">ETH/USDT</span>
+                <span class="price">$3,456.78</span>
+                <span class="change up">▲ +1.89%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🔵</span>
+                <span class="symbol">OKB/USDT</span>
+                <span class="price">$45.23</span>
+                <span class="change up">▲ +5.67%</span>
+            </span>
+            <span class="ticker-item">
+                <span class="icon">🟢</span>
+                <span class="symbol">SOL/USDT</span>
+                <span class="price">$178.90</span>
+                <span class="change down">▼ -1.23%</span>
+            </span>
+        </div>
+    </div>
+
+    
+    <header>
+        <nav>
+            <a href="#" class="logo">weex注册资讯</a>
+            <ul class="nav-links">
+                <li><a href="#">🏠 首页</a></li>
+                <li><a href="#">📈 行情</a></li>
+                <li><a href="#">⚡ 快讯</a></li>
+                <li><a href="#">🔍 深度</a></li>
+                <li><a href="#">🏦 DeFi</a></li>
+                <li><a href="#">🎨 NFT</a></li>
+                <li><a href="#">🌐 Web3</a></li>
+            </ul>
+            
+            
+            <div class="cta-buttons">
+                <a href="/okx.html" class="btn-cta btn-register">
+                    <span class="icon">🚀</span>
+                    立即注册
+                </a>
+                <a href="/okx.html" class="btn-cta btn-download">
+                    <span class="icon">📱</span>
+                    马上下载
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section class="hero fade-in">
+            <article class="featured-article">
+                <div class="article-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/a64045a7750b8f38cad143095641c896369d1db0.jpg" alt="Web3区块链科技">
+                    <div class="article-image-overlay"></div>
+                </div>
+                <div class="article-content">
+                    <span class="tag">🔥 独家报道</span>
+                    <h1>weex注册发布2024年Web3生态发展报告：去中心化金融迎来爆发式增长</h1>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8;">
+                        最新数据显示，全球DeFi总锁仓量突破历史新高，以太坊Layer2解决方案交易量同比增长300%。weex注册研究院深入分析行业趋势，解读未来六个月的投资机会与风险预警...
+                    </p>
+                    <div class="meta">
+                        <span>📅 2024-03-20</span>
+                        <span>👁️ 12.5k 阅读</span>
+                        <span>⏱️ 8分钟</span>
+                        <span>🏷️ weex注册研究院</span>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <div class="widget">
+                    <h3 class="widget-title">24小时热榜</h3>
+                    <ul class="trending-list">
+                        <li class="trending-item">
+                            <span class="rank gold">🥇</span>
+                            <div class="trending-content">
+                                <h4>📈 比特币ETF资金流入创新高</h4>
+                                <p>💰 2.3万阅读 · ⏰ 15分钟前</p>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="rank silver">🥈</span>
+                            <div class="trending-content">
+                                <h4>⚡ 以太坊Dencun升级完成</h4>
+                                <p>💰 1.8万阅读 · ⏰ 32分钟前</p>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="rank bronze">🥉</span>
+                            <div class="trending-content">
+                                <h4>🚀 Solana生态项目爆发</h4>
+                                <p>💰 1.5万阅读 · ⏰ 1小时前</p>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="rank normal">4</span>
+                            <div class="trending-content">
+                                <h4>🏦 美联储利率决议前瞻</h4>
+                                <p>💰 1.2万阅读 · ⏰ 2小时前</p>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="rank normal">5</span>
+                            <div class="trending-content">
+                                <h4>🔔 weex注册新功能上线公告</h4>
+                                <p>💰 9.8k阅读 · ⏰ 3小时前</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="widget">
+                    <h3 class="widget-title" style="--before-content: '🏷️';">热门标签</h3>
+                    <div class="tag-cloud">
+                        <span class="tag-item tag-primary">₿ 比特币</span>
+                        <span class="tag-item tag-secondary">Ξ 以太坊</span>
+                        <span class="tag-item tag-accent">🦄 DeFi</span>
+                        <span class="tag-item tag-primary">🎨 NFT</span>
+                        <span class="tag-item tag-secondary">⚡ Layer2</span>
+                        <span class="tag-item tag-accent">🎁 空投</span>
+                        <span class="tag-item tag-primary">🌉 跨链</span>
+                        <span class="tag-item tag-secondary">🎮 GameFi</span>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        
+        <section class="topics fade-in">
+            <div class="topic-card">
+                <span class="topic-icon">📊</span>
+                <h3>行情分析</h3>
+                <p>专业技术分析与价格预测</p>
+            </div>
+            <div class="topic-card">
+                <span class="topic-icon">🏦</span>
+                <h3>DeFi协议</h3>
+                <p>去中心化金融最新动态</p>
+            </div>
+            <div class="topic-card">
+                <span class="topic-icon">🎨</span>
+                <h3>NFT市场</h3>
+                <p>数字藏品与元宇宙资讯</p>
+            </div>
+            <div class="topic-card">
+                <span class="topic-icon">⚡</span>
+                <h3>Layer2</h3>
+                <p>扩容方案与性能优化</p>
+            </div>
+        </section>
+
+        
+        <section class="fade-in">
+            <div class="section-header">
+                <h2 class="section-title news">最新资讯</h2>
+                <a href="#" class="view-all">查看全部 →</a>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.shutterstock.com/b767f36bfaee93870959807d2f8bcc598a87f7d6.jpg" alt="区块链技术">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-market">📢 市场动态</span>
+                        <h3>weex注册交易所上线新交易对，支持更多优质资产交易</h3>
+                        <p class="news-excerpt">为进一步丰富用户投资选择，weex注册将于本周上线多个热门币种交易对，包括新兴Layer2代币及AI概念币...</p>
+                        <div class="news-meta">
+                            <span>⏰ 2小时前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/28a3619b0784fc9079e5c446be3333a19a93b4b0.jpg" alt="比特币区块链">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-tech">🔧 技术科普</span>
+                        <h3>深度解析：比特币减半后矿工收益模型变化及影响</h3>
+                        <p class="news-excerpt">2024年比特币减半已完成，区块奖励降至3.125 BTC。本文深入分析矿工经济模型变化及对市场供需的影响...</p>
+                        <div class="news-meta">
+                            <span>⏰ 4小时前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cdn.vectorstock.com/9bb705229dfdaca26d96bd0da100ac0ccee3c1a2.jpg" alt="DeFi去中心化金融">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-policy">⚖️ 政策监管</span>
+                        <h3>香港证监会发布虚拟资产交易平台指引，weex注册积极响应合规要求</h3>
+                        <p class="news-excerpt">香港监管机构发布最新虚拟资产服务提供商监管框架，weex注册作为全球领先平台，持续完善合规体系建设...</p>
+                        <div class="news-meta">
+                            <span>⏰ 6小时前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.shutterstock.com/29134f360339658d7ddfadcf5d0d6aab8006c691.jpg" alt="Web3元宇宙">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-analysis">📈 项目分析</span>
+                        <h3>Restaking赛道热度持续，EigenLayer生态项目盘点</h3>
+                        <p class="news-excerpt">再质押协议成为2024年最热门叙事之一，总锁仓量突破100亿美元。本文盘点EigenLayer生态值得关注的重点项目...</p>
+                        <div class="news-meta">
+                            <span>⏰ 8小时前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/c943097bb760c16ae4915deeb9001ab313902839.jpg" alt="元宇宙未来科技">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-security">🛡️ 安全提醒</span>
+                        <h3>警惕钓鱼攻击！weex注册安全团队发布最新诈骗手法预警</h3>
+                        <p class="news-excerpt">近期出现针对加密货币用户的新型钓鱼攻击，伪装成官方客服诱导用户泄露私钥。weex注册提醒用户注意安全防范...</p>
+                        <div class="news-meta">
+                            <span>⏰ 12小时前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://kimi-web-img.moonshot.cn/img/atelierkristel.com/75ee2a265a948a7e3922029e2163f2ecb5e74ad5.jpg" alt="NFT数字艺术">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-category cat-market">🎮 行业观点</span>
+                        <h3>Web3游戏爆发前夜：传统游戏大厂加速布局区块链</h3>
+                        <p class="news-excerpt">从育碧到索尼，传统游戏巨头纷纷探索NFT与区块链游戏结合。weex注册研究院分析GameFi赛道投资机会...</p>
+                        <div class="news-meta">
+                            <span>📅 1天前</span>
+                            <a href="#" class="read-more">阅读更多 →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        weex注册        <section class="-feature fade-in">
+            <div class="-content">
+                <div class="-text">
+                    <h2>weex注册 - 全球领先的数字资产服务平台</h2>
+                    <p>weex注册（）为全球用户提供安全、稳定、便捷的数字资产交易服务。支持现货、合约、期权等多种交易产品，覆盖比特币、以太坊等数百种加密货币。通过weex注册Web3钱包，轻松管理多链资产，探索DeFi、NFT和GameFi无限可能。</p>
+                    
+                    
+                    <div class="-buttons">
+                        <a href="/okx.html" class="btn-cta btn-register">
+                            <span class="icon">🚀</span>
+                            立即注册
+                        </a>
+                        <a href="/okx.html" class="btn-cta btn-download">
+                            <span class="icon">📲</span>
+                            马上下载
+                        </a>
+                    </div>
+                </div>
+                <div class="-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">👥</span>
+                        <span class="stat-number">2000万+</span>
+                        <span class="stat-label">全球用户</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">💰</span>
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">交易币种</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🌍</span>
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">全天候服务</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🛡️</span>
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">系统稳定性</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="fade-in">
+            <div class="section-header">
+                <h2 class="section-title flash">7×24小时快讯</h2>
+                <a href="#" class="view-all">查看全部 →</a>
+            </div>
+            
+            <div style="background: var(--card); border-radius: 16px; padding: 1rem; border: 1px solid var(--border);">
+                <div class="flash-item">
+                    <span class="flash-time">14:32</span>
+                    <div class="flash-content">
+                        <p>
+                            <span class="flash-tag" style="background: rgba(0,212,255,0.1); color: var(--primary);">📢 公告</span>
+                            【weex注册公告】weex注册将于今日18:00（HKT）上线XYZ/USDT永续合约，最高支持50倍杠杆
+                        </p>
+                        <span class="flash-source">✓ 官方公告 · ⏰ 5分钟前</span>
+                    </div>
+                </div>
+                <div class="flash-item">
+                    <span class="flash-time">14:15</span>
+                    <div class="flash-content">
+                        <p>
+                            <span class="flash-tag" style="background: rgba(0,255,136,0.1); color: #00ff88;">📈 市场</span>
+                            【市场动态】MicroStrategy再次购入5000枚比特币，平均价格$67,000
+                        </p>
+                        <span class="flash-source">✓ 市场快讯 · ⏰ 22分钟前</span>
+                    </div>
+                </div>
+                <div class="flash-item">
+                    <span class="flash-time">13:58</span>
+                    <div class="flash-content">
+                        <p>
+                            <span class="flash-tag" style="background: rgba(255,193,7,0.1); color: #ffc107;">⚡ 技术</span>
+                            【技术升级】以太坊主网Gas费降至5 Gwei以下，Layer2交易量创历史新高
+                        </p>
+                        <span class="flash-source">✓ 技术动态 · ⏰ 39分钟前</span>
+                    </div>
+                </div>
+                <div class="flash-item">
+                    <span class="flash-time">13:30</span>
+                    <div class="flash-content">
+                        <p>
+                            <span class="flash-tag" style="background: rgba(255,0,110,0.1); color: var(--accent);">⚖️ 监管</span>
+                            【监管动态】美国SEC推迟对以太坊ETF期权交易的决定至4月底
+                        </p>
+                        <span class="flash-source">✓ 政策法规 · ⏰ 1小时前</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>💎 关于weex注册资讯</h4>
+                <p>weex注册资讯是weex注册（）旗下的区块链资讯平台，致力于为全球用户提供及时、专业、深度的加密货币行业新闻与市场分析。</p>
+                <div class="social-links">
+                    <a href="#" title="微信">💬</a>
+                    <a href="#" title="微博">📱</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="Telegram">✈️</a>
+                    <a href="#" title="Discord">🎮</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>📱 产品服务</h4>
+                <ul class="footer-links">
+                    <li><a href="#">💰 现货交易</a></li>
+                    <li><a href="#">📊 合约交易</a></li>
+                    <li><a href="#">🎯 期权交易</a></li>
+                    <li><a href="#">👛 Web3钱包</a></li>
+                    <li><a href="#">📚 weex注册学院</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🔧 支持中心</h4>
+                <ul class="footer-links">
+                    <li><a href="#">❓ 帮助中心</a></li>
+                    <li><a href="#">💳 费率标准</a></li>
+                    <li><a href="#">🔌 API文档</a></li>
+                    <li><a href="#">📝 上币申请</a></li>
+                    <li><a href="#">🏢 机构服务</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>⚖️ 法律合规</h4>
+                <ul class="footer-links">
+                    <li><a href="#">📄 用户协议</a></li>
+                    <li><a href="#">🔒 隐私政策</a></li>
+                    <li><a href="#">⚠️ 风险披露</a></li>
+                    <li><a href="#">✅ 合规声明</a></li>
+                    <li><a href="#">📧 联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 weex注册资讯  News. All rights reserved. ⚠️ 数字资产交易存在风险，请谨慎投资。</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">本网站信息仅供参考，不构成投资建议 🔒</p>
+        </div>
+            <div class="footer_bottom">
+            <p class="muted">
+                <a href="/">weex注册</a>
+                <a href="https://mullinsdiane142.github.io/" target="_blank">唯客app下载安卓版</a><a href="http://u7.qianjilawfirm.com/" target="_blank">唯客app下载安卓版</a><a href="http://z3163h.ubijiaoyisuo.com.cn/" target="_blank">WEEX官网</a><a href="https://cochranmatthew383.github.io/" target="_blank">唯客app下载安卓版</a><a href="https://dunlapmichael330.github.io/" target="_blank">weex唯客</a><a href="https://hannajeffrey436.github.io/" target="_blank">唯客app下载</a><a href="https://higginsvanessa395.github.io/" target="_blank">weex唯客</a><a href="https://mitchelldavid443.github.io/" target="_blank">Weex下载</a>                            </p>
+        </div></footer>
+
+    
+    <div class="fixed-cta">
+        <a href="/okx.html" class="btn-cta btn-register">
+            <span class="icon">🚀</span>
+            立即注册
+        </a>
+        <a href="/okx.html" class="btn-cta btn-download">
+            <span class="icon">📱</span>
+            马上下载
+        </a>
+    </div>
+
+    <script>
+        // 动态更新行情数据（模拟）
+        function updateTicker() {
+            const prices = document.querySelectorAll('.price');
+            prices.forEach(price => {
+                const current = parseFloat(price.textContent.replace(/[^0-9.]/g, ''));
+                const change = (Math.random() - 0.5) * 0.1;
+                const newPrice = (current * (1 + change)).toFixed(2);
+                price.textContent = '$' + newPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            });
+        }
+
+        // 每5秒更新一次行情
+        setInterval(updateTicker, 5000);
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // 导航栏滚动效果
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // 添加随机emoji到标签
+        const tagEmojis = ['🚀', '💎', '🔥', '⚡', '🌟', '💰', '📈', '🎯'];
+        document.querySelectorAll('.tag-item').forEach((tag, index) => {
+            if (!tag.textContent.includes('₿') && !tag.textContent.includes('Ξ')) {
+                const randomEmoji = tagEmojis[Math.floor(Math.random() * tagEmojis.length)];
+                tag.insertAdjacentText('afterbegin', randomEmoji + ' ');
+            }
+        });
+    </script>
+</body>
+</html>
